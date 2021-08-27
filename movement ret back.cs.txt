@@ -1,0 +1,73 @@
+
+using UnityEngine;
+
+
+public class player_movement : MonoBehaviour
+{
+public Rigidbody rb;
+public int i=5000;
+public Vector3 vel;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+
+vel=rb.velocity;
+
+if(Input.GetKeyDown(KeyCode.Space))
+{rb.AddForce(-vel.x, -vel.y, -vel.z);}
+    if(!(Input.GetKey("a")||Input.GetKey("d")))
+{i=10;}
+       if(Input.GetKey("w"))
+       {
+        rb.AddForce(0 , 0, 1000* Time.deltaTime);
+         }
+       
+if(Input.GetKey("w")&&Input.GetKey("d"))
+{  rb.AddForce((i+500) * Time.deltaTime , 0, 1000* Time.deltaTime);
+        }
+
+if(Input.GetKey("w")&&Input.GetKey("a"))
+{  rb.AddForce((-i-500) * Time.deltaTime , 0, 1000* Time.deltaTime);
+        }
+
+if(Input.GetKey("s")&&Input.GetKey("d"))
+{  rb.AddForce((i+500) * Time.deltaTime , 0, -1000* Time.deltaTime);
+        }
+
+if(Input.GetKey("s")&&Input.GetKey("a"))
+{  rb.AddForce((-i-500) * Time.deltaTime , 0, -1000* Time.deltaTime);
+        }
+
+      if(Input.GetKey("s"))
+       {
+        rb.AddForce(0 , 0, -1000* Time.deltaTime); 
+         }
+       
+      if(Input.GetKey("a"))
+       {
+        transform.eulerAngles= new Vector3 (0, (-i-500) * Time.deltaTime, 0);
+         i++;
+          }
+        
+       else
+      if(Input.GetKey("d"))
+       {
+         transform.eulerAngles= new Vector3 ( 0, (i+500) * Time.deltaTime, 0);
+           i++;
+
+}
+       else 
+       {
+       transform.eulerAngles= new Vector3 ( 0, 0, 0);
+       }
+       
+
+    }
+}
